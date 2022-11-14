@@ -7,11 +7,11 @@ from level import Level
 class Game:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT), pygame.FULLSCREEN)
         pygame.display.set_caption('State Control')
         self.clock = pygame.time.Clock()
         self.level = Level()
-        
+
     def run(self):
         while True:
             for event in pygame.event.get():

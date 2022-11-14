@@ -12,9 +12,9 @@ class Level:
         self.all_sprites = pygame.sprite.Group()
 
         self.setup()
-        
+
     def setup(self):
-        self.player = Player((640, 360), self.all_sprites)
+        self.player = Player((960, 540), self.all_sprites)
 
     #Runs the level every frame using delta Time.
     def run(self, dt):
