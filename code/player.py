@@ -1,7 +1,8 @@
 import pygame
 from settings import *
-from support import *   
-from timer import Timer
+from support import *
+from timerClass import Timer
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, group):
@@ -39,7 +40,7 @@ class Player(pygame.sprite.Sprite):
                             'right_water' : [], 'left_water' : [], 'up_water' : [], 'down_water' : []}
 
         for animation in self.animations.keys():
-            full_path = '../graphics/character/' + animation
+            full_path = '..\graphics\character' + animation
             self.animations[animation] = import_folder(full_path)
 
     def animate(self, dt):
@@ -50,7 +51,7 @@ class Player(pygame.sprite.Sprite):
 
     def input(self):
         keys = pygame.key.get_pressed()
-        if not self.timers['tool use'].active():
+        if not self.timers['tool use'].active:
             #directions
             if keys[pygame.K_UP]:
                 self.direction.y = -1
@@ -84,14 +85,14 @@ class Player(pygame.sprite.Sprite):
         #tool use
         if self.timers['tool use'].active:
             self.status = self.status.split('_')[0] + '_' + self.selected_tool
-
+    
     def update_timers(self):
         for timer in self.timers.values():
             timer.update()
 
     def move(self, dt):
         #normalizing a vector
-        if self.direction.magnitude() > 0:
+        if self.direction.magnitude() > 0:      
             self.direction = self.direction.normalize()
         
         #horizontal movement
