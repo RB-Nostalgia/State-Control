@@ -50,7 +50,7 @@ class Level:
 
         # collision tiles
         for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
-            Generic((x * TILE_SIZE, y * TILE_SIZE), pygame.Surface(((TILE_SIZE / 2) * 2, (TILE_SIZE / 2) * 2)), self.collision_sprites)
+            Generic((x * TILE_SIZE, y * TILE_SIZE), pygame.Surface(((TILE_SIZE / 2), (TILE_SIZE / 2) )), self.collision_sprites)
 
         # Player
         for obj in tmx_data.get_layer_by_name('Player'):

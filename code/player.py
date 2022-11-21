@@ -139,8 +139,9 @@ class Player(pygame.sprite.Sprite):
         for timer in self.timers.values():
             timer.update()
     
+
     def collision(self, direction):
-        
+
         for sprite in self.collision_sprites.sprites():
             if hasattr(sprite, 'hitbox'):
                 if sprite.hitbox.colliderect(self.hitbox):
