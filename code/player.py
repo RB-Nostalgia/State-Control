@@ -22,7 +22,7 @@ class Player(pygame.sprite.Sprite):
         self.speed = 200
 
         #collisions
-        self.hitbox = self.rect.copy().inflate((-126    , -70))
+        self.hitbox = self.rect.copy().inflate((-126, -70))
         self.collision_sprites = collision_sprites
 
         #timers
@@ -176,7 +176,6 @@ class Player(pygame.sprite.Sprite):
             timer.update()
     
     def collision(self, direction):
-
         for sprite in self.collision_sprites.sprites():
             if hasattr(sprite, 'hitbox'):
                 if sprite.hitbox.colliderect(self.hitbox):

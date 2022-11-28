@@ -29,7 +29,7 @@ class Level:
 
         #sky
         self.rain = Rain(self.all_sprites)
-        self.raining = randint(0, 10) > 7
+        self.raining = randint(0, 10) > 6
         self.soil_layer.raining = self.raining
         self.sky = Sky()
 
@@ -81,7 +81,10 @@ class Level:
 
         # collision tiles
         for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
-            Generic((x * TILE_SIZE, y * TILE_SIZE), pygame.Surface((TILE_SIZE, TILE_SIZE)), self.collision_sprites)
+            Generic(
+                pos = (x * TILE_SIZE, y * TILE_SIZE), 
+                surf = pygame.Surface((TILE_SIZE, TILE_SIZE)), 
+                groups = self.collision_sprites)
 
         # Player
         for obj in tmx_data.get_layer_by_name('Player'):
@@ -124,7 +127,7 @@ class Level:
             #soil
             self.soil_layer.remove_water()
 
-            self.raining = randint(0, 10) > 7  
+            self.raining = randint(0, 10) > 6
             
             self.soil_layer.raining = self.raining
             if self.raining:
@@ -189,3 +192,12 @@ class CameraGroup(pygame.sprite.Group):
                     offset_rect = sprite.rect.copy()
                     offset_rect.center -= self.offset
                     self.display_surface.blit(sprite.image, offset_rect)
+
+                    #analytics
+                    if sprite == player:
+                        pygame.draw.rect(self.display_surface, 'red', offset_rect, 5)
+                        hitbox_rect = player.hitbox.copy()
+                        hitbox_rect.center = offset_rect.center
+                        pygame.draw.rect(self.display_surface, 'green', hitbox_rect, 5)
+                        target_pos = offset_rect.center + PLAYER_TOOL_OFFSET[player.status.split('_')[0]]
+                        pygame.draw.circle(self.display_surface,'blue', target_pos, 5)
