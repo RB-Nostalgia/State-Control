@@ -110,7 +110,7 @@ class Menu:
                 pos_rect = self.sell_text.get_rect(midleft = (self.main_rect.left + 150, bg_rect.centery))
                 self.display_surface.blit(self.sell_text, pos_rect)
             else: #buy
-                pos_rect = self.buy_text.get_rect(midleft = (self.main_rect.left + 150, bg_rect.centery))
+                pos_rect = self.buy_text.get_rect(midleft = (self.main_rect.left + 250, bg_rect.centery))
                 self.display_surface.blit(self.buy_text, pos_rect)
     
     def update(self):
